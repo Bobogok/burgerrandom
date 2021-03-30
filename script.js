@@ -1,26 +1,58 @@
 function burger_info() {
+    var ingredients = {
+        tomato: 20,
+        mayo: 50,
+        potatoe: 20,
+        oil: 100,
+        bread: 50,
+        meat: 250,
+        salat: 10,
+        water: 2,
+    }
 
-    var ingredients = ["Помидор ", "Майонез ", "Картошка ", "Масло ", "Хлеб ", "Мясо ", "Салат ", "Вода "];   
-    var ingredients_calories = [20, 50, 20, 100, 50, 250, 10, 2];
+    var keys_ingredients = Object.keys(ingredients);
 
-    var burger1_info = document.getElementById("burger1_info");
-    var burger2_info = document.getElementById("burger2_info");
-    var burger1_info_calories = document.getElementById("burger1_info_calories");
-    var burger2_info_calories = document.getElementById("burger2_info_calories");
+    function create_food(title) {
+        var burger = document.getElementById('burgers');
 
-        for (i = 0; i < 5; i++) {
-            var li1 = document.createElement("li1");
-            var li2 = document.createElement("li2");
-            var random1 = Math.floor(Math.random() * ingredients.length);
-            var random2 = Math.floor(Math.random() * ingredients.length);
-            var burger1 = ingredients[random1] + ingredients_calories[random1] + "<br>";
-            var burger2 = ingredients[random2] + ingredients_calories[random2] + "<br>";
-            li1.innerHTML = burger1;
-            li2.innerHTML = burger2;
-            burger1_info.appendChild(li1);
-            burger2_info.appendChild(li2);
-        }
+        var name_h2 = document.createElement('h2');
+        name_h2.innerHTML = title;
+        burger.appendChild(name_h2);
 
+        var ul = document.createElement('ul');
+        burger.appendChild(ul);
+
+
+        while (true) {
+            var all_kkal = 0;
+            var random_array = new Array();
+
+            for (var i = 0; i < keys_ingredients.length; i++) {
+                var random = Math.floor(Math.random() * keys_ingredients.length);
+                random_array.push(random);
+                all_kkal += ingredients[keys_ingredients[random]];
+            };
+
+            if (all_kkal > 1000) {
+                for (var i = 0; i < keys_ingredients.length; i++) {
+                    var li = document.createElement('li');
+                    li.innerHTML = keys_ingredients[random_array[i]] + ': ' + ingredients[keys_ingredients[random_array[i]]] + 'ккал';
+                    ul.appendChild(li);
+                };
+                break;
+            };
+        };
+
+
+        var li_kkal = document.createElement('li');
+        li_kkal.innerHTML = 'Всего: ' + all_kkal + 'ккал';
+        ul.appendChild(li_kkal);  
+    }
+    
+    create_food('Burger1');
+    create_food('Burger2');
+    // create_food('Burger3');
+    // create_food('Burger4');
 }
 
 window.onload = burger_info;
