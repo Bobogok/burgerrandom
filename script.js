@@ -1,4 +1,4 @@
-function burger_info() {
+window.onload = function() {
     var ingredients = {
         tomato: 20,
         mayo: 50,
@@ -51,9 +51,6 @@ function burger_info() {
     
     create_food('Burger1');
     create_food('Burger2');
-    // create_food('Burger3');
-    // create_food('Burger4');
 }
 
-window.onload = burger_info;
-
+// ДЗ описать все строки кода в комментарии
